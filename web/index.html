@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RaiseRight 3.0 Data Reconciliation</title>
+    <link rel="stylesheet" href="css/pure-min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/spinner.css" />
+    <script src="js/vue.js"></script>
+    <script src="js/lodash.min.js"></script>
+    <script src="js/luxon.min.js"></script>
+    <script>luxon.DateTime.local();</script>
+    <script type="module">
+      Vue.prototype.Window = window;
+      import buildApp from "./js/app.js";
+      window.onload = function () {
+        window.app = buildApp("#app");
+      };
+    </script>
+  </head>
+  <body>
+    <div id="app"><root /></div>
+  </body>
+</html>

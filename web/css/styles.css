@@ -1,0 +1,5 @@
+.daybox {
+    box-sizing: border-box;
+    height: 120px;
+    border: 1px solid grey;
+}
