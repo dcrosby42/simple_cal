@@ -18,6 +18,11 @@ const buildApp = function (selector) {
   })
 }
 
+function setDocTitle(t) {
+
+  document.title = t
+}
+
 
 // Base application 
 Vue.component('calendar-app', {
@@ -29,12 +34,16 @@ Vue.component('calendar-app', {
       showWeekends: false,
     }
   },
+  methods: {
+    setDocTitle,
+  },
   created: async function () {
     this.calendar = await loadCalendar("cal1.json")
     for (let i = 0; i < this.calendar.items.length; i++) {
       const item = this.calendar.items[i];
       item.key = i
     }
+    this.setDocTitle(this.calendar.config.title)
     this.loading = false
     this.loaded = true
   },
