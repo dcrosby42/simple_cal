@@ -23,14 +23,14 @@ Vue.component('root', {
       calendar: {
         config: {
           title: "RR S2H 2020",
-          showWeekends: false,
+          showWeekends: true,
           startDate: "2020-09-01",
           endDate: "2020-12-01",
         },
         items: [
           {
             name: "RR 1.1.0",
-            date: "2020-09-27",
+            date: "2020-09-29",
             styles: ["release"]
           },
           {
@@ -47,6 +47,11 @@ Vue.component('root', {
     }
   },
   created: async function () {
+    for (let i = 0; i < this.calendar.items.length; i++) {
+      const item = this.calendar.items[i];
+      item.key = i
+    }
+    console.log(this.calendar)
   },
   template: `
     <div v-if="loading" class="">
@@ -65,7 +70,7 @@ Vue.component('calendar-view', {
 
   data() {
     return {
-      showWeekends: this.calendar.config.showWeekends == true
+      showWeekends: this.calendar.config.showWeekends === true
     }
   },
 
@@ -147,7 +152,7 @@ Vue.component('calendar-grid', {
       if (this.showWeekends) {
         return this.days
       }
-      return _.reject(this.days, d => d.weekday == 6 || d.weekday == 7)
+      return _.reject(this.days, isWeekend)
     },
 
     boxes() {
@@ -221,16 +226,33 @@ Vue.component('calendar-grid', {
   template: `
     <div class="pure-g">
       
-      <div v-for="box in boxes" :class="[cellSizeClass, box.displayClass() ]">
-        <day-box :box="box" v-if="box.type === 'day'" />
-        <pref-box :box="box" v-elseif="box.type === 'pref'" />
+      <template v-for="box in boxes">
+        <day-box v-if="box.type === 'day'" :box="box" :class="cellSizeClass"/>
+        <pref-box v-else-if="box.type === 'pref'" :box="box" :class="cellSizeClass"/>
         <div v-else>{{box}}</div>
-      </div>
+      </template>
 
       <div class="pure-u-1">{{scratch}}</div>
     </div>
   `
 })
+
+function isToday(d) {
+  return luxon.DateTime.local().toISODate() === d.toISODate()
+}
+
+function isThisWeek(d) {
+  return luxon.DateTime.local().weekNumber === d.weekNumber
+}
+function isSaturday(d) {
+  return d.weekday === 6
+}
+function isSunday(d) {
+  return d.weekday === 7
+}
+function isWeekend(d) {
+  return isSaturday(d) || isSunday(d)
+}
 
 class DayBox {
   constructor(d) {
@@ -251,16 +273,16 @@ class DayBox {
     return str
   }
   displayClass() {
-    return { daybox: true }
+    return { daybox: true, today: isToday(this.date), weekend: isWeekend(this.date) }
   }
 }
 
 Vue.component('day-box', {
   props: ["box"],
   template: `
-    <div>
+    <div :class="box.displayClass()">
       <div>{{box.getDateString()}}</div>
-      <item v-for="item in box.items" :item="item">
+      <item v-for="item in box.items" :item="item" :key="item.key"/>
     </div>
   `,
 })
@@ -281,10 +303,13 @@ class PrefBox {
 
 Vue.component('pref-box', {
   props: ["box"],
+  methods: {
+    isThisWeek, // imported for local use
+  },
   template: `
-    <div>
-      <div>{{box.getWeekString()}}</div>
-      <item v-for="item in box.items" :item="item">
+    <div :class="box.displayClass()">
+      <div :class="{thisweek:isThisWeek(box.monday)}">{{box.getWeekString()}}</div>
+      <item v-for="item in box.items" :item="item" :key="item.key"/>
     </div>
   `,
 })
@@ -292,7 +317,7 @@ Vue.component('pref-box', {
 Vue.component('item', {
   props: ["item"],
   template: `
-    <div>
+    <div class="item" :class="item.styles">
       {{item.name}}
     </div>
   `,

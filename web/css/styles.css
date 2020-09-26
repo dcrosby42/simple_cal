@@ -3,3 +3,24 @@
     height: 120px;
     border: 1px solid grey;
 }
+
+.daybox.weekend {
+    border-color: lightgrey;
+    color: grey;
+}
+.daybox.today {
+    background-color: #ddf;
+    border-width: 2px;
+    font-weight: bold;
+}
+.prefbox .thisweek {
+    font-weight: bold;
+}
+
+.item.pto {
+    background-color: #99ff99
+}
+
+.item.release {
+    background-color: #9999ff
+}
