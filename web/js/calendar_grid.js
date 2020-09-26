@@ -1,7 +1,10 @@
 
 import { DayBox } from "./day_box.js"
 import { PrefBox } from "./pref_box.js"
+import { HeaderBox } from "./header_box.js"
 import { isWeekend } from "./date_helpers.js"
+
+const DayTitles = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
 const CalendarGridComponent = Vue.component('calendar-grid', {
     data() {
@@ -63,10 +66,19 @@ const CalendarGridComponent = Vue.component('calendar-grid', {
         },
 
         boxes() {
+            // NOTE: it's expected filteredDays ALWAYS begins with a Monday.
             let res = []
+
+            const headerBoxes = ["Week"].concat([...DayTitles].splice(0, this.weekLen)).map(name => {
+                return new HeaderBox(name)
+            })
+            res = res.concat(headerBoxes)
+
             _.chunk(this.filteredDays, this.weekLen).forEach(wk => {
+                // for every week, prepend a "PrefBox" (prefix box)
                 res.push(new PrefBox(wk[0]))
-                let boxes = wk.map(d => new DayBox(d,))
+                // add a DayBox for each day of the week.
+                let boxes = wk.map(d => new DayBox(d))
                 res = res.concat(boxes)
             });
 
@@ -86,7 +98,7 @@ const CalendarGridComponent = Vue.component('calendar-grid', {
                         year = box.date.year
                     }
 
-                    // Apply items
+                    // Include items for this date:
                     box.items = this.itemsByDateStr[box.date.toISODate()]
                 }
             });
@@ -136,6 +148,7 @@ const CalendarGridComponent = Vue.component('calendar-grid', {
       <template v-for="box in boxes">
         <day-box v-if="box.type === 'day'" :box="box" :class="cellSizeClass"/>
         <pref-box v-else-if="box.type === 'pref'" :box="box" :class="cellSizeClass"/>
+        <header-box v-else-if="box.type === 'header'" :box="box" :class="cellSizeClass"/>
         <div v-else>{{box}}</div>
       </template>
 

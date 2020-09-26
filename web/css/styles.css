@@ -4,6 +4,11 @@
     border: 1px solid grey;
 }
 
+.dayheader {
+    background-color: black;
+    color: white;
+}
+
 .daybox.weekend {
     border-color: lightgrey;
     color: grey;
@@ -17,10 +22,15 @@
     font-weight: bold;
 }
 
-.item.pto {
-    background-color: #99ff99
-}
 
 .item.release {
     background-color: #9999ff
+}
+
+.item.pto {
+    background-color: #ffff99
+}
+
+.item.begin_sprint {
+    background-color: #99ff99
 }

@@ -1,0 +1,73 @@
+{
+    "config": {
+        "title": "RR S2H 2020",
+        "showWeekends": true,
+        "startDate": "2020-09-01",
+        "endDate": "2020-12-01"
+    },
+    "items": [
+        {
+            "name": "Begin Sprint 27",
+            "date": "2020-09-15",
+            "styles": [
+                "begin_sprint"
+            ]
+        },
+        {
+            "name": "Begin Sprint 28",
+            "date": "2020-09-29",
+            "styles": [
+                "begin_sprint"
+            ]
+        },
+        {
+            "name": "Begin Sprint 29",
+            "date": "2020-10-13",
+            "styles": [
+                "begin_sprint"
+            ]
+        },
+        {
+            "name": "Rel 1.1.0",
+            "date": "2020-09-29",
+            "styles": [
+                "release"
+            ]
+        },
+        {
+            "name": "Rel 1.2.0",
+            "date": "2020-10-27",
+            "styles": [
+                "release"
+            ]
+        },
+        {
+            "name": "Dave - PTO",
+            "date": "2020-10-02",
+            "styles": [
+                "pto"
+            ]
+        },
+        {
+            "name": "Dave - PTO",
+            "date": "2020-10-16",
+            "styles": [
+                "pto"
+            ]
+        },
+        {
+            "name": "Thanksgiving",
+            "date": "2020-11-26",
+            "styles": [
+                "pto"
+            ]
+        },
+        {
+            "name": "Thanksgiving",
+            "date": "2020-11-27",
+            "styles": [
+                "pto"
+            ]
+        }
+    ]
+}

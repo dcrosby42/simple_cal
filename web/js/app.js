@@ -2,6 +2,7 @@ import { isToday, isThisWeek, isWeekend } from "./date_helpers.js"
 
 import { CalendarViewComponent } from "./calendar_view.js"
 import { CalendarGridComponent } from "./calendar_grid.js"
+import { loadCalendar } from "./calendar_loader.js"
 
 // Helpers
 // const isDefined = x => typeof x !== 'undefined'
@@ -22,37 +23,20 @@ const buildApp = function (selector) {
 Vue.component('calendar-app', {
   data: function () {
     return {
-      calendar: {
-        config: {
-          title: "RR S2H 2020",
-          showWeekends: true,
-          startDate: "2020-09-01",
-          endDate: "2020-12-01",
-        },
-        items: [
-          {
-            name: "RR 1.1.0",
-            date: "2020-09-29",
-            styles: ["release"]
-          },
-          {
-            name: "Dave - PTO",
-            date: "2020-10-02",
-            styles: ["pto"]
-          }
-        ],
-      },
-      loading: false,
-      // loaded: false,
-      // selectedComponent: null,
+      calendar: null,
+      loading: true,
+      loaded: false,
       showWeekends: false,
     }
   },
   created: async function () {
+    this.calendar = await loadCalendar("cal1.json")
     for (let i = 0; i < this.calendar.items.length; i++) {
       const item = this.calendar.items[i];
       item.key = i
     }
+    this.loading = false
+    this.loaded = true
   },
   template: `
     <div v-if="loading" class="">
@@ -63,5 +47,12 @@ Vue.component('calendar-app', {
     </div>
   `,
 })
+
+Vue.component('spinner', {
+  template: `
+    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+  `
+})
+
 
 export default buildApp
