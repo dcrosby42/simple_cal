@@ -3,6 +3,7 @@ import { DayBox } from "./day_box.js"
 import { PrefBox } from "./pref_box.js"
 import { HeaderBox } from "./header_box.js"
 import { isWeekend } from "./date_helpers.js"
+import { exists } from "./helpers.js"
 
 const DayTitles = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
@@ -100,22 +101,29 @@ const CalendarGridComponent = Vue.component('calendar-grid', {
 
                     // Include items for this date:
                     box.items = this.itemsByDateStr[box.date.toISODate()]
+
+                } else if (box.constructor == PrefBox) {
+                    box.items = this.weekItemsByNumber[box.weekNumber()]
                 }
             });
 
             return res
         },
 
+        dayItems() {
+            return this.items.filter(i => { return exists(i.date) })
+        },
+
         itemsByDateStr() {
-            const map = {}
-            this.items.forEach(i => {
-                const isoDate = i.date
-                if (!map[isoDate]) {
-                    map[isoDate] = []
-                }
-                map[isoDate].push(i)
-            })
-            return map
+            return _.groupBy(this.dayItems, "date")
+        },
+
+        weekItems() {
+            return this.items.filter(i => { return exists(i.week_number) })
+        },
+
+        weekItemsByNumber() {
+            return _.groupBy(this.weekItems, "week_number")
         },
 
         weekLen() {
@@ -141,6 +149,15 @@ const CalendarGridComponent = Vue.component('calendar-grid', {
         }
     },
     methods: {
+    },
+    mounted() {
+        // Scroll to today
+        this.$nextTick(() => {
+            const today = document.getElementById("day-box-today");
+            if (today) {
+                today.scrollIntoView();
+            }
+        })
     },
     template: `
     <div class="pure-g">

@@ -14,6 +14,20 @@
             ]
         },
         {
+            "name": "Sprint 27",
+            "week_number": 38,
+            "styles": [
+                "sprint"
+            ]
+        },
+        {
+            "name": "Sprint 27",
+            "week_number": 39,
+            "styles": [
+                "sprint"
+            ]
+        },
+        {
             "name": "Begin Sprint 28",
             "date": "2020-09-29",
             "styles": [
@@ -21,10 +35,80 @@
             ]
         },
         {
+            "name": "Sprint 28",
+            "week_number": 40,
+            "styles": [
+                "sprint"
+            ]
+        },
+        {
+            "name": "Sprint 28",
+            "week_number": 41,
+            "styles": [
+                "sprint"
+            ]
+        },
+        {
             "name": "Begin Sprint 29",
             "date": "2020-10-13",
             "styles": [
                 "begin_sprint"
+            ]
+        },
+        {
+            "name": "Sprint 29",
+            "week_number": 42,
+            "styles": [
+                "sprint"
+            ]
+        },
+        {
+            "name": "Sprint 29",
+            "week_number": 43,
+            "styles": [
+                "sprint"
+            ]
+        },
+        {
+            "name": "Begin Sprint 30",
+            "date": "2020-10-27",
+            "styles": [
+                "begin_sprint"
+            ]
+        },
+        {
+            "name": "Sprint 30",
+            "week_number": 44,
+            "styles": [
+                "sprint"
+            ]
+        },
+        {
+            "name": "Sprint 30",
+            "week_number": 45,
+            "styles": [
+                "sprint"
+            ]
+        },
+        {
+            "name": "Begin Sprint 31",
+            "date": "2020-11-10",
+            "styles": [
+                "begin_sprint"
+            ]
+        },
+        {
+            "name": "Sprint 31",
+            "week_number": 46,
+            "styles": [
+                "sprint"
+            ]
+        },
+        {
+            "name": "Sprint 31",
+            "week_number": 47,
+            "styles": [
+                "sprint"
             ]
         },
         {
@@ -51,6 +135,27 @@
         {
             "name": "Dave - PTO",
             "date": "2020-10-16",
+            "styles": [
+                "pto"
+            ]
+        },
+        {
+            "name": "Fish fry",
+            "date": "2020-10-16",
+            "styles": [
+                "pto"
+            ]
+        },
+        {
+            "name": "Fish fry",
+            "date": "2020-10-17",
+            "styles": [
+                "pto"
+            ]
+        },
+        {
+            "name": "Fish fry",
+            "date": "2020-10-18",
             "styles": [
                 "pto"
             ]

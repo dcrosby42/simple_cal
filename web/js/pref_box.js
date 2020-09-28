@@ -8,6 +8,9 @@ class PrefBox {
         this.monday = monday
         this.items = []
     }
+    weekNumber() {
+        return this.monday.weekNumber
+    }
     getWeekString() {
         return "w" + this.monday.weekNumber
     }

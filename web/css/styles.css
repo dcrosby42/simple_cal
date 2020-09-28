@@ -18,6 +18,11 @@
     border-width: 2px;
     font-weight: bold;
 }
+
+.daybox.past {
+    background-color: #eee;
+}
+
 .prefbox .thisweek {
     font-weight: bold;
 }
