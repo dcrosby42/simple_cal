@@ -13,6 +13,7 @@
     border-color: lightgrey;
     color: grey;
 }
+
 .daybox.today {
     background-color: #ddf;
     border-width: 2px;
@@ -29,7 +30,8 @@
 
 
 .item.release {
-    background-color: #9999ff
+    /* background-color: #9999ff */
+    background-color: #ff9999
 }
 
 .item.pto {

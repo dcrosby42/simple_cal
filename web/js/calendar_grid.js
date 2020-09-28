@@ -16,11 +16,11 @@ const CalendarGridComponent = Vue.component('calendar-grid', {
     props: {
         startDateIso: {
             type: String,
-            default: "2020-05-01",
+            default: "2020-01-01",
         },
         endDateIso: {
             type: String,
-            default: "2020-09-30",
+            default: "2020-02-01",
         },
         items: {
             type: Array,
