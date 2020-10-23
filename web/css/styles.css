@@ -30,8 +30,11 @@
 
 
 .item.release {
-    /* background-color: #9999ff */
-    background-color: #ff9999
+    background-color: #9999ff
+}
+
+.strike {
+    text-decoration: line-through;
 }
 
 .item.pto {
