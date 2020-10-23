@@ -5,4 +5,6 @@ cd $HERE
 PORT=$1
 # : ${PORT:="8000"}
 
-npx http-server web -c-1 -p ${PORT:="8000"} -o index.html
+[[ `which npx` ]] && npx http-server web -c-1 -p ${PORT:="8000"} -o index.html && exit
+[[ `which python` ]] && python -m SimpleHTTPServer && exit
+
